@@ -34,14 +34,14 @@ if (isset($_POST['btn_submit'])) {
         $errors[]='Kích thước file không được lớn hơn 2MB';
     }
     $target = "photo/".basename($image);
-    $sql = "INSERT INTO posts(content,image ) VALUES ('$content', '$image' )";
+    $sql = "INSERT INTO status(content,image ) VALUES ('$content', '$image' )";
     if (mysqli_query($conn, $sql) && move_uploaded_file($_FILES['image']['tmp_name'], $target) && empty($errors)==true) {
             echo '<script language="javascript">alert("Đăng bài viết thành công!");</script>';
             } else{
             echo '<script language="javascript">alert("Có lỗi trong quá trình xử lý");</script>';
     }
 }
-    $sql = "SELECT * FROM posts WHERE id";
+    $sql = "SELECT * FROM status WHERE id_status";
     $result = mysqli_query($conn, $sql);
     // $status = get_all_status($conn);
     while ($row = mysqli_fetch_array($result)) {     
@@ -49,8 +49,8 @@ if (isset($_POST['btn_submit'])) {
         echo "<tr><p>".$row['content']."</p></tr>";     
         // echo"<td><img class='avtt' src='./img/avt.webp'></td>";
         // echo"<td>hbmkamye</td>";     
-        echo '<td><a href="posts_edit.php?id='.$row['id'].'">Sửa</a></td>
-         <td><a href="posts_delete.php?id='.$row['id'].'">Xóa</a></td>';    
+        echo '<td><a href="posts_edit.php?id='.$row['id_status'].'">Sửa</a></td>
+         <td><a href="posts_delete.php?id='.$row['id_status'].'">Xóa</a></td>';    
         // <td><a href="posts_edit.php?id='.$row['id'].'">edit</a></td> |   
     }
     while ($row = mysqli_fetch_array($result)) {     

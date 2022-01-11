@@ -8,7 +8,7 @@
 // Kết nối Database
 require_once 'posts_connect.php';
 $id=$_GET['id'];
-$query=mysqli_query($conn,"select * from `posts` where id='$id'");
+$query=mysqli_query($conn,"select * from `status` where id_status='$id'");
 $row=mysqli_fetch_assoc($query);
 ?>
 <form method="POST" class="form" style="max-width: 500px;background: white; width:100%; padding: 0 12px">
@@ -42,8 +42,8 @@ $row=mysqli_fetch_assoc($query);
 <label>Hình ảnh: <br/>
 <input type="text" value="<?php echo $row['image']; ?>" name="image"/></label><br/>
 <input type="submit" value="Update" name="update_posts">
-<td><input type="hidden" name="size" value="<?php echo $row['image']; ?>">    
-<input type="file" name="image" class="hinhanh"><br/><br/></td>
+<td><input type="hidden" name="size">    
+<input type="file" name="image" class="hinhanh" value="<?php echo $row['image']; ?>"><br/><br/></td>
 <?php require_once 'posts_update.php';?>
 </div>
 
